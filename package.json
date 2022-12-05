@@ -1,0 +1,62 @@
+{
+  "name": "castabilitybackend",
+  "version": "1.0.0",
+  "description": "Backend for the Castability app and admin dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write",
+    "lint": "eslint 'src/**/*.js' --fix",
+    "test": "cross-env PORT=4000 NODE_ENV=test nyc --reporter=lcov --reporter=html --reporter=text-lcov mocha test/**.test.js --timeout=15000000 --exit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "node_modules/.bin/eslint --ignore-path .gitignore . --fix"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "semi": false
+  },
+  "author": "Niveus Solutions",
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1",
+    "winston": "^3.2.1",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "prettier-eslint": "^9.0.0"
+  }
+}
