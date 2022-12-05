@@ -1,7 +1,7 @@
 const sonarqubeScanner = require('sonarqube-scanner');
 sonarqubeScanner(
   {
-    serverUrl:  'http://34.93.157.58:9000',
+    serverUrl:  'http://34.93.6.57:9000',
     projectName: 'spring-boot-complete',
     projectKey:'network',
     token: 'sqp_f741d02efb6d27d1a32f33fba69855545cdfc646',
