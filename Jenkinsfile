@@ -11,6 +11,10 @@ pipeline {
                 CLUSTER_NAME = 'network18-cluster'
                 LOCATION = 'us-central1-a'
                 CREDENTIALS_ID = 'kubernetes'	
+		
+		PROJECTKEY= 'network'
+        	SONARURL = 'http://34.93.6.57:9000'
+        	LOGIN= 'sqp_f741d02efb6d27d1a32f33fba69855545cdfc646'
 	}
 	
     stages {
@@ -20,22 +24,20 @@ pipeline {
 		    }
 	    }
 	    
-	    stage('build') {
-              steps {
-                  echo 'building the software'
-                  sh 'npm install'
-              }
-          }
-	    
-	    stage('SonarQube analysis') {
-        	steps{
-        		withSonarQubeEnv('sonarqube-9.7.1') { 
-              			 sh "${scannerHome}/bin/sonar-scanner"
-    			}
-        	}
+	     stage('Code Quality Check via SonarQube') {
+        steps {
+            script {
+            def scannerHome = tool 'sonarqube-9.7.1';
+               withSonarQubeEnv(credentialsId: 'sonarqube'){
+                sh "${tool("sonarqube-9.7.1")}/bin/sonar-scanner \
+                -Dsonar.projectKey=${env.PROJECTKEY} \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=${env.SONARURL} \
+                -Dsonar.login=${env.LOGIN}"
+                    }
+                }
             }
-	    
-	    
+        }
                
       
     
