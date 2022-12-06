@@ -27,7 +27,7 @@ pipeline {
 		  //sh 'npm install --save-dev mocha-sonar-reporter'
 		 // sh "npm install mocha-sonar-generic-test-coverage --save-dev"
 		 // sh "mocha --reporter mocha-sonar-generic-test-coverage test"
-		      sh 'rm package-lock.json'
+		      //sh 'rm package-lock.json'
 		  	sh 'rm -rf node_modules'
 		  
 		 sh 'npm install --save node_name'
