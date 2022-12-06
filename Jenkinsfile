@@ -30,7 +30,7 @@ pipeline {
 		      sh 'rm package-lock.json'
 		  	sh 'rm -rf node_modules'
 		  
-		  
+		 sh 'npm install --save module_name'
 		  sh "npm install sonar-scanner"
 		  
                   sh 'npm install'
